@@ -1,0 +1,5 @@
+FROM gobase
+
+RUN go build
+
+CMD ["./app"]

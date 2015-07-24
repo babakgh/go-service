@@ -12,11 +12,10 @@ func main() {
   handler := rest.ResourceHandler{}
 
 	err := handler.SetRoutes(
-		// system
 		&rest.Route{"GET", "/ping", func(w rest.ResponseWriter, r *rest.Request) {
       w.WriteJson("ok")
     }},
-	)
+  )
 	if err != nil {
     fmt.Printf(err.Error())
 		os.Exit(2)
