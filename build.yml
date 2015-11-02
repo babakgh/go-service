@@ -1,4 +1,3 @@
-workdir: .
 steps:
   - step_one:
     name: gobase
