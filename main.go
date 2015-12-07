@@ -13,15 +13,9 @@ func main() {
 	api.Use(rest.DefaultDevStack...)
 	router, err := rest.MakeRouter(
 		rest.Get("/ping", func(w rest.ResponseWriter, r *rest.Request) {
-			w.WriteJson("ok")
+			w.WriteJson("ok ok")
 		}),
 	)
-	// handler := rest.ResourceHandler{}
-	// err := handler.SetRoutes(
-	// 	&rest.Route{"GET", "/ping", func(w rest.ResponseWriter, r *rest.Request) {
-	// 		w.WriteJson("ok")
-	// 	}},
-	// )
 	if err != nil {
 		fmt.Printf(err.Error())
 		os.Exit(2)
