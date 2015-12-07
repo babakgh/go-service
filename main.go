@@ -1,29 +1,37 @@
 package main
 
 import (
-  "os"
+	"fmt"
 	"net/http"
-  "fmt"
+	"os"
 
 	"github.com/ant0ine/go-json-rest/rest"
 )
 
 func main() {
-  handler := rest.ResourceHandler{}
-
-	err := handler.SetRoutes(
-		&rest.Route{"GET", "/ping", func(w rest.ResponseWriter, r *rest.Request) {
-      w.WriteJson("ok")
-    }},
-  )
+	api := rest.NewApi()
+	api.Use(rest.DefaultDevStack...)
+	router, err := rest.MakeRouter(
+		rest.Get("/ping", func(w rest.ResponseWriter, r *rest.Request) {
+			w.WriteJson("ok")
+		}),
+	)
+	// handler := rest.ResourceHandler{}
+	// err := handler.SetRoutes(
+	// 	&rest.Route{"GET", "/ping", func(w rest.ResponseWriter, r *rest.Request) {
+	// 		w.WriteJson("ok")
+	// 	}},
+	// )
 	if err != nil {
-    fmt.Printf(err.Error())
+		fmt.Printf(err.Error())
 		os.Exit(2)
 	}
 
-  url := "0.0.0.0:8080"
+	api.SetApp(router)
+
+	url := "0.0.0.0:8080"
 	fmt.Printf("Starting API on %s", url)
-	if err := http.ListenAndServe(url, &handler); err != nil {
+	if err := http.ListenAndServe(url, api.MakeHandler()); err != nil {
 		fmt.Printf("Failed to start API %s", err.Error())
 		os.Exit(2)
 	}
