@@ -1,0 +1,2 @@
+FROM gobase
+ENV foo /bar
