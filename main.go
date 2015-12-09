@@ -13,7 +13,7 @@ func main() {
 	api.Use(rest.DefaultDevStack...)
 	router, err := rest.MakeRouter(
 		rest.Get("/ping", func(w rest.ResponseWriter, r *rest.Request) {
-			w.WriteJson("ok ok")
+			w.WriteJson("ok")
 		}),
 	)
 	if err != nil {

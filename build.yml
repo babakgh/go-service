@@ -10,6 +10,9 @@ steps:
 #        - apt-get clean autoclean
 #        - apt-get autoremove -y
 #        - rm -rf /var/lib/{apt,dpkg,cache,log}/
+  - step_one_half:
+    name: steponehalf
+    dockerfile: Dockerfile.basebase
   - step_two:
     name: steptwo
     dockerfile: Dockerfile.main

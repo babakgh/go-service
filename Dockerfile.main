@@ -1,3 +1,3 @@
-FROM gobase
+FROM gobasebase
 
 CMD ["./app"]
