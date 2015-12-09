@@ -1,4 +1,4 @@
-FROM golang:1.4.2-wheezy
+FROM golang:1.4.3-wheezy
 
 ENV APP_HOME /go/src/app
 COPY . $APP_HOME
